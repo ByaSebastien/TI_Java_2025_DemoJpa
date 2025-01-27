@@ -41,6 +41,9 @@ public class User {
     @Column(nullable = false,length = 10)
     private UserGender gender;
 
+    @Embedded
+    private Address address;
+
     public User() {}
 
     public User(String firstName, String lastName, LocalDate birthDate, UserGender gender) {
@@ -84,6 +87,14 @@ public class User {
 
     public void setGender(UserGender gender) {
         this.gender = gender;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override

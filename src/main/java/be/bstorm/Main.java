@@ -1,10 +1,15 @@
 package be.bstorm;
 
+import be.bstorm.entities.Address;
 import be.bstorm.entities.Product;
 import be.bstorm.entities.Stock;
+import be.bstorm.entities.User;
+import be.bstorm.enums.UserGender;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+
+import java.time.LocalDate;
 
 public class Main {
 
@@ -15,10 +20,10 @@ public class Main {
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
 
-            Product product = new Product("DMC");
-            Stock stock = new Stock(10,product);
+            User user = new User("a","b", LocalDate.now(), UserGender.MALE);
+            user.setAddress(new Address("a","b","c"));
 
-            em.persist(stock);
+            em.persist(user);
 
             em.getTransaction().commit();
         }
