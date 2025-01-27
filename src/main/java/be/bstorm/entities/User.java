@@ -7,7 +7,21 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "user_")
+@Table(
+        name = "user_",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "uk_user__first_name__last_name__birthDate",
+                        columnNames = {"first_name","last_name","birthDate"}
+                )
+        }
+)
+@NamedQueries({
+        @NamedQuery(
+                name = "findAllUser",
+                query = "SELECT u FROM User u"
+        )
+})
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
